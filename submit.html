@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>புதிய பெயர் சேர்க்கவும் | தமிழ் பெயர்கள்</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="professional-additions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>தமிழ் பெயர்கள்</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">முகப்பு</a>
+                <a href="names.html" class="nav-link">பெயர்கள்</a>
+                <a href="submit.html" class="nav-link active">பெயர் சேர்க்கவும்</a>
+                <a href="favorites.html" class="nav-link">விருப்பங்கள்</a>
+                <a href="about.html" class="nav-link">பற்றி</a>
+            </div>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>புதிய பெயர் சேர்க்கவும்</h1>
+                <p>தமிழ் பெயர்களின் தொகுப்பை பெரிதாக்க உங்கள் பங்களிப்பை வழங்குங்கள். ஒவ்வொரு பெயருமே சமூகத்தின் அங்கீகாரத்தைப் பெறும்.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Submit Form Section -->
+    <main class="submit-section">
+        <div class="container">
+            <div class="form-container">
+                <div class="form-header">
+                    <h1 class="form-title">புதிய பெயர் சேர்க்கவும்</h1>
+                    <p class="form-description">
+                        உங்கள் அறிவையும் கலாச்சார அனுபவத்தையும் பகிர்ந்து கொள்ளுங்கள். ஒவ்வொரு பெயரும் நமது சமூகத்தின் பொக்கிஷம்.
+                    </p>
+                </div>
+
+                <form id="submitForm" class="submit-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="name">பெயர் <span class="required">*</span></label>
+                            <input type="text" id="name" name="name" class="form-input" 
+                                   placeholder="தமிழில் பெயரை எழுதுங்கள்" required>
+                            <small class="form-help">தமிழ் எழுத்துகளில் மட்டும் எழுதவும்</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="gender">பாலினம் <span class="required">*</span></label>
+                            <select id="gender" name="gender" class="form-select" required>
+                                <option value="">பாலினத்தை தேர்ந்தெடுங்கள்</option>                        <option value="ஆண்கள்">ஆண்கள்</option>
+                        <option value="பெண்கள்">பெண்கள்</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="meaning">அர்த்தம் <span class="required">*</span></label>
+                        <textarea id="meaning" name="meaning" class="form-textarea" 
+                                  placeholder="இந்த பெயரின் அர்த்தம் என்ன?" required></textarea>
+                        <small class="form-help">தெளிவான மற்றும் அர்த்தமுள்ள விளக்கம் கொடுங்கள்</small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">வகை <span class="required">*</span></label>
+                        <select id="category" name="category" class="form-select" required>
+                            <option value="">வகையை தேர்ந்தெடுங்கள்</option>                        <option value="தனித்துவமான">தனித்துவமான</option>
+                        <option value="நவீன">நவீன</option>
+                        <option value="தூய தமிழ்">தூய தமிழ்</option>
+                        <option value="இயற்கை">இயற்கை</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reference">குறிப்பு / காரணம்</label>
+                        <textarea id="reference" name="reference" class="form-textarea" 
+                                  placeholder="இந்த பெயர் ஏன் சிறப்பானது? (விருப்பம்)"></textarea>
+                        <small class="form-help">
+                            எ.கா: "இந்த பெயர் சங்க இலக்கியத்தில் வருகிறது", "எனது பாட்டியின் பெயர்", 
+                            "இயற்கையின் அழகை குறிக்கிறது"
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contributor">உங்கள் பெயர் (பங்களிப்பாளர்)</label>
+                        <input type="text" id="contributor" name="contributor" class="form-input" 
+                               placeholder="உங்கள் பெயர் (விருப்பம்)">
+                        <small class="form-help">பெயர் குறிப்பிடாவிட்டால் "அநாமதேய" என காட்டப்படும்</small>
+                    </div>
+
+                    <div class="form-guidelines">
+                        <h3>வழிகாட்டுதல்கள்:</h3>
+                        <ul>
+                            <li>தமிழ் எழுத்துகளில் மட்டும் பெயர்களை எழுதுங்கள்</li>
+                            <li>தெளிவான மற்றும் சரியான அர்த்தம் கொடுங்கள்</li>
+                            <li>கலாச்சார முக்கியத்துவம் அல்லது சிறப்பை பகிருங்கள்</li>
+                            <li>ஆங்கில எழுத்துகள் அல்லது ரோமன் எழுத்துகள் பயன்படுத்த வேண்டாம்</li>
+                            <li>தவறான அல்லது வசைபாடும் அர்த்தங்கள் கொடுக்க வேண்டாம்</li>
+                        </ul>
+                    </div>
+
+                    <button type="submit" class="form-submit">
+                        பெயரை சேர்க்கவும்
+                    </button>
+                </form>
+
+                <div class="post-submit-info">
+                    <h3>சேர்த்த பிறகு என்ன நடக்கும்?</h3>
+                    <div class="info-steps">
+                        <div class="info-step">
+                            <div class="step-icon">1</div>
+                            <div class="step-content">
+                                <h4>உடனடி வெளியீடு</h4>
+                                <p>உங்கள் பெயர் உடனே பொது பார்வைக்கு வெளியிடப்படும்</p>
+                            </div>
+                        </div>
+                        <div class="info-step">
+                            <div class="step-icon">2</div>
+                            <div class="step-content">
+                                <h4>சமூக மதிப்பீடு</h4>
+                                <p>மற்ற பயனர்கள் உங்கள் பெயருக்கு வாக்களிக்கலாம்</p>
+                            </div>
+                        </div>
+                        <div class="info-step">
+                            <div class="step-icon">3</div>
+                            <div class="step-content">
+                                <h4>ஒப்புதல் நிலை</h4>
+                                <p>25+ வாக்குகள் பெற்றால் "சமுதாய ஒப்புதல்" கிடைக்கும்</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>தமிழ் பெயர்கள்</h3>
+                    <p>தமிழ் பெயர்களின் பொக்கிஷம்</p>
+                </div>
+                <div class="footer-section">
+                    <h4>இணைப்புகள்</h4>
+                    <ul>
+                        <li><a href="names.html">பெயர்கள்</a></li>
+                        <li><a href="submit.html">பெயர் சேர்க்கவும்</a></li>
+                        <li><a href="about.html">பற்றி</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>தொடர்பு</h4>
+                    <p>உங்கள் கருத்துகள் மற்றும் பரிந்துரைகள் வரவேற்கப்படுகின்றன</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 தமிழ் பெயர்கள். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="api-client.js"></script>
+    <script src="script.js"></script>
+
+    <style>
+        .submit-section {
+            margin-top: 70px;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #f9f9f9 0%, #fff5f5 100%);
+            min-height: 100vh;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-title {
+            font-size: 2.5rem;
+            color: #d32f2f;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .form-description {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .submit-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .required {
+            color: #f44336;
+        }
+
+        .form-help {
+            display: block;
+            margin-top: 0.5rem;
+            color: #888;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .form-guidelines {
+            background: #f8f9fa;
+            border-left: 4px solid #d32f2f;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+        }
+
+        .form-guidelines h3 {
+            color: #d32f2f;
+            margin-bottom: 1rem;
+        }
+
+        .form-guidelines ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .form-guidelines li {
+            margin-bottom: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .post-submit-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .post-submit-info h3 {
+            text-align: center;
+            color: #d32f2f;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+
+        .info-steps {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .info-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+        }
+
+        .step-icon {
+            background: #d32f2f;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+
+        .step-content h4 {
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .step-content p {
+            color: #666;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .submit-form,
+            .post-submit-info {
+                padding: 2rem;
+            }
+
+            .form-title {
+                font-size: 2rem;
+            }
+
+            .info-step {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+        }
+    </style>
+</body>
+</html>

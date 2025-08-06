@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>தமிழ் பெயர்கள் | Tamil Peyargal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="professional-additions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>தமிழ் பெயர்கள்</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link active">முகப்பு</a>
+                <a href="names.html" class="nav-link">பெயர்கள்</a>
+                <a href="submit.html" class="nav-link">பெயர் சேர்க்கவும்</a>
+                <a href="favorites.html" class="nav-link">விருப்பங்கள்</a>
+                <a href="about.html" class="nav-link">பற்றி</a>
+            </div>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">தமிழ் பெயர்கள்</h1>
+                <h2 class="hero-subtitle">அழகான தமிழ் குழந்தை பெயர்களின் தொகுப்பு</h2>
+                <p class="hero-description">
+                    இந்த தளம் தமிழ் பெயர்களுக்கான சமூக இயக்கமாகும். உங்கள் பங்களிப்புகள் குழந்தைகளுக்கான அருமையான பெயர்களை உருவாக்க உதவுகின்றன.
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="names.html" class="btn btn-ghost">
+                        பெயர்கள் பார்வையிட
+                    </a>
+                    <a href="submit.html" class="btn btn-ghost">
+                        பெயர் சேர்க்கவும்
+                    </a>
+                    <button onclick="showRandomName()" class="btn btn-accent">
+                        சாய்வு பெயர் பார்க்க
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hero-stats">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalNames">மொத்தம்</div>
+                    <div class="stat-label">பெயர்கள்</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="approvedNames">சமுதாய ஒப்புதல்</div>
+                    <div class="stat-label">அங்கீகரிக்கப்பட்டவை</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="contributors">பங்களிப்பாளர்கள்</div>
+                    <div class="stat-label">சமூக உறுப்பினர்கள்</div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Featured Names Section -->
+    <section class="featured-section">
+        <div class="container">
+            <h2 class="section-title">இன்றைய சிறப்பு பெயர்கள்</h2>
+            <div class="featured-names" id="featuredNames">
+                <!-- Featured names will be loaded here -->
+            </div>
+            <div class="text-center">
+                <a href="names.html" class="btn btn-outline">மேலும் பெயர்கள் பார்க்க</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories-section">
+        <div class="container">
+            <h2 class="section-title">வகைகள்</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterByCategory('ஆண்கள்')">
+                    <div class="category-icon">ஆ</div>
+                    <h3>ஆண்கள் பெயர்கள்</h3>
+                    <p>சிறுவர்களுக்கான அழகான பெயர்கள்</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('பெண்கள்')">
+                    <div class="category-icon">பெ</div>
+                    <h3>பெண்கள் பெயர்கள்</h3>
+                    <p>சிறுமிகளுக்கான இனிமையான பெயர்கள்</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('தனித்துவமான')">
+                    <div class="category-icon">த</div>
+                    <h3>தனித்துவமான பெயர்கள்</h3>
+                    <p>அரிய மற்றும் சிறப்பான பெயர்கள்</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('நவீன')">
+                    <div class="category-icon">ந</div>
+                    <h3>நவீன பெயர்கள்</h3>
+                    <p>நாட்டின் தற்கால பெயர்கள்</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('தூய தமிழ்')">
+                    <div class="category-icon">தூ</div>
+                    <h3>தூய தமிழ் பெயர்கள்</h3>
+                    <p>பாரம்பரிய தமிழ் பெயர்கள்</p>
+                </div>
+                <div class="category-card" onclick="filterByCategory('இயற்கை')">
+                    <div class="category-icon">இ</div>
+                    <h3>இயற்கை பெயர்கள்</h3>
+                    <p>இயற்கையிலிருந்து எடுக்கப்பட்ட பெயர்கள்</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>தமிழ் பெயர்கள்</h3>
+                    <p>தமிழ் பெயர்களின் பொக்கிஷம்</p>
+                </div>
+                <div class="footer-section">
+                    <h4>இணைப்புகள்</h4>
+                    <ul>
+                        <li><a href="names.html">பெயர்கள்</a></li>
+                        <li><a href="submit.html">பெயர் சேர்க்கவும்</a></li>
+                        <li><a href="about.html">பற்றி</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>தொடர்பு</h4>
+                    <p>உங்கள் கருத்துகள் மற்றும் பரிந்துரைகள் வரவேற்கப்படுகின்றன</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 தமிழ் பெயர்கள். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Random Name Modal -->
+    <div id="randomNameModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div id="randomNameContent">
+                <!-- Random name will be displayed here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="api-client.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
