@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>பெயர்கள் | தமிழ் பெயர்கள்</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="professional-additions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>தமிழ் பெயர்கள்</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">முகப்பு</a>
+                <a href="names.html" class="nav-link active">பெயர்கள்</a>
+                <a href="submit.html" class="nav-link">பெயர் சேர்க்கவும்</a>
+                <a href="favorites.html" class="nav-link">விருப்பங்கள்</a>
+                <a href="about.html" class="nav-link">பற்றி</a>
+            </div>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <div class="container">
+            <div class="page-header-content">
+                <h1>தமிழ் பெயர்கள் தொகுப்பு</h1>
+                <p>அழகான தமிழ் பெயர்களை தேடி கண்டுபிடியுங்கள். ஒவ்வொரு பெயருக்கும் அதன் அர்த்தம், பொருள் மற்றும் கலாச்சார மரபு உள்ளது.</p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-container">
+                <div class="filter-group">
+                    <input type="text" id="searchInput" class="search-input" placeholder="பெயர் அல்லது அர்த்தத்தை தேடுங்கள்...">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="categoryFilter">வகை:</label>
+                    <select id="categoryFilter" class="filter-select">
+                        <option value="">அனைத்து வகைகள்</option>
+                        <option value="தனித்துவமான">தனித்துவமான</option>
+                        <option value="நவீன">நவீன</option>
+                        <option value="தூய தமிழ்">தூய தமிழ்</option>
+                        <option value="இயற்கை">இயற்கை</option>
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label for="genderFilter">பாலினம்:</label>
+                    <select id="genderFilter" class="filter-select">
+                        <option value="">இரு பாலினமும்</option>
+                        <option value="ஆண்கள்">ஆண்கள்</option>
+                        <option value="பெண்கள்">பெண்கள்</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- Tamil Letter Filter -->
+            <div class="letter-filter">
+                <button class="letter-btn">அ</button>
+                <button class="letter-btn">ஆ</button>
+                <button class="letter-btn">இ</button>
+                <button class="letter-btn">ஈ</button>
+                <button class="letter-btn">உ</button>
+                <button class="letter-btn">ஊ</button>
+                <button class="letter-btn">எ</button>
+                <button class="letter-btn">ஏ</button>
+                <button class="letter-btn">ஐ</button>
+                <button class="letter-btn">ஒ</button>
+                <button class="letter-btn">ஓ</button>
+                <button class="letter-btn">ஔ</button>
+                <button class="letter-btn">க</button>
+                <button class="letter-btn">ச</button>
+                <button class="letter-btn">ட</button>
+                <button class="letter-btn">த</button>
+                <button class="letter-btn">ப</button>
+                <button class="letter-btn">ற</button>
+                <button class="letter-btn">ம</button>
+                <button class="letter-btn">ய</button>
+                <button class="letter-btn">ல</button>
+                <button class="letter-btn">வ</button>
+                <button class="letter-btn">ழ</button>
+                <button class="letter-btn">ள</button>
+                <button class="letter-btn">ஞ</button>
+                <button class="letter-btn">ந</button>
+                <button class="letter-btn">ண</button>
+                <button class="letter-btn">ன</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Names Container -->
+    <main class="names-container">
+        <div class="container">
+            <div class="section-header">
+                <h1 class="section-title">தமிழ் பெயர்கள் தொகுப்பு</h1>
+                <p class="section-description">
+                    அழகான, அர்த்தமுள்ள தமிழ் பெயர்களின் சமூக தொகுப்பு. ஒவ்வொரு பெயரும் நமது கலாச்சாரத்தின் பொக்கிஷம்.
+                </p>
+            </div>
+            
+            <div id="namesContainer">
+                <!-- Names will be loaded here by JavaScript -->
+                <div class="loading-container" style="text-align: center; padding: 3rem;">
+                    <div class="loading"></div>
+                    <p style="margin-top: 1rem;">பெயர்கள் ஏற்றுகிறது...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Quick Add Section -->
+    <section class="quick-add-section">
+        <div class="container">
+            <div class="quick-add-card">
+                <h3>புதிய பெயர் பங்களிக்க விரும்புகிறீர்களா?</h3>
+                <p>உங்கள் அறிவையும் கலாச்சார அனுபவத்தையும் பகிர்ந்து கொள்ளுங்கள்</p>
+                <a href="submit.html" class="btn btn-primary">
+                    பெயர் சேர்க்கவும்
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>தமிழ் பெயர்கள்</h3>
+                    <p>தமிழ் பெயர்களின் பொக்கிஷம்</p>
+                </div>
+                <div class="footer-section">
+                    <h4>இணைப்புகள்</h4>
+                    <ul>
+                        <li><a href="names.html">பெயர்கள்</a></li>
+                        <li><a href="submit.html">பெயர் சேர்க்கவும்</a></li>
+                        <li><a href="about.html">பற்றி</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>தொடர்பு</h4>
+                    <p>உங்கள் கருத்துகள் மற்றும் பரிந்துரைகள் வரவேற்கப்படுகின்றன</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 தமிழ் பெயர்கள். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="api-client.js"></script>
+    <script src="script.js"></script>
+
+    <style>
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-description {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 600px;
+            margin: 1rem auto 0;
+            line-height: 1.8;
+        }
+
+        .quick-add-section {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e8f5e8 100%);
+            padding: 4rem 0;
+        }
+
+        .quick-add-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .quick-add-card h3 {
+            color: #d32f2f;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .quick-add-card p {
+            color: #666;
+            margin-bottom: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .loading-container {
+            min-height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @media (max-width: 768px) {
+            .letter-filter {
+                gap: 0.3rem;
+            }
+
+            .letter-btn {
+                padding: 0.4rem 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .filter-container {
+                gap: 1rem;
+            }
+
+            .filter-group {
+                width: 100%;
+            }
+
+            .quick-add-card {
+                padding: 2rem;
+            }
+        }
+    </style>
+</body>
+</html>

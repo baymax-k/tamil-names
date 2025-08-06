@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>நிர்வாக பேனல் | தமிழ் பெயர்கள்</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Tamil:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="professional-additions.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h1>தமிழ் பெயர்கள்</h1>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">முகப்பு</a>
+                <a href="names.html" class="nav-link">பெயர்கள்</a>
+                <a href="submit.html" class="nav-link">பெயர் சேர்க்கவும்</a>
+                <a href="favorites.html" class="nav-link">விருப்பங்கள்</a>
+                <a href="about.html" class="nav-link">பற்றி</a>
+                <a href="admin.html" class="nav-link active">நிர்வாகம்</a>
+            </div>
+            <div class="nav-toggle" id="mobile-menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Admin Section -->
+    <main class="admin-section">
+        <div class="container">
+            <div class="admin-header">
+                <h1 class="admin-title">நிர்வாக பேனல்</h1>
+                <p class="admin-subtitle">
+                    புதிய பெயர்களை மதிப்பீடு செய்து ஒப்புதல் அளிக்கவும்
+                </p>
+            </div>
+
+            <!-- Admin Stats -->
+            <div class="admin-stats">
+                <div class="stat-card">
+                    <div class="stat-icon">கா</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="pendingCount">0</div>
+                        <div class="stat-label">ஒப்புதலுக்காக காத்திருக்கும்</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">ஒப்</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="approvedCount">0</div>
+                        <div class="stat-label">இன்று ஒப்புதல் அளிக்கப்பட்டவை</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">பங்</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="contributorsCount">0</div>
+                        <div class="stat-label">மொத்தம் பங்களிப்பாளர்கள்</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">வா</div>
+                    <div class="stat-content">
+                        <div class="stat-number" id="totalVotes">0</div>
+                        <div class="stat-label">மொத்தம் வாக்குகள்</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Options -->
+            <div class="admin-filters">
+                <div class="filter-group">
+                    <label for="statusFilter">நிலை:</label>
+                    <select id="statusFilter" class="filter-select">
+                        <option value="">அனைத்து நிலைகள்</option>
+                        <option value="pending" selected>ஒப்புதலுக்காக காத்திருக்கும்</option>
+                        <option value="approved">சமூகத்தால் ஒப்புதல்</option>
+                        <option value="admin">நிர்வாகத்தால் ஒப்புதல்</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label for="sortBy">வரிசைப்படுத்தல்:</label>
+                    <select id="sortBy" class="filter-select">
+                        <option value="newest">புதியவை முதலில்</option>
+                        <option value="oldest">பழையவை முதலில்</option>
+                        <option value="most_votes">அதிக வாக்குகள்</option>
+                        <option value="least_votes">குறைந்த வாக்குகள்</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <button onclick="exportPendingNames()" class="btn btn-secondary">
+                        ஏற்றுமதி
+                    </button>
+                </div>
+            </div>
+
+            <!-- Admin Container -->
+            <div id="adminContainer">
+                <!-- Admin content will be loaded here -->
+                <div class="loading-container">
+                    <div class="loading"></div>
+                    <p>நிர்வாக தரவு ஏற்றுகிறது...</p>
+                </div>
+            </div>
+
+            <!-- Bulk Actions -->
+            <div class="bulk-actions" id="bulkActions" style="display: none;">
+                <div class="bulk-header">
+                    <h3>தேர்ந்தெடுக்கப்பட்ட பெயர்கள்: <span id="selectedCount">0</span></h3>
+                </div>
+                <div class="bulk-buttons">
+                    <button onclick="bulkApprove()" class="btn btn-primary">
+                        அனைத்தையும் ஒப்புதல்
+                    </button>
+                    <button onclick="bulkReject()" class="btn btn-outline">
+                        அனைத்தையும் நிராகரி
+                    </button>
+                    <button onclick="clearSelection()" class="btn btn-secondary">
+                        தேர்வை அழி
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Edit Modal -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-header">
+                <h2>பெயரை திருத்தவும்</h2>
+            </div>
+            <form id="editForm">
+                <div class="form-group">
+                    <label for="editName">பெயர்:</label>
+                    <input type="text" id="editName" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label for="editMeaning">அர்த்தம்:</label>
+                    <textarea id="editMeaning" class="form-textarea" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editReference">குறிப்பு:</label>
+                    <textarea id="editReference" class="form-textarea"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="editGender">பாலினம்:</label>
+                    <select id="editGender" class="form-select" required>
+                        <option value="ஆண்கள்">ஆண்கள்</option>
+                        <option value="பெண்கள்">பெண்கள்</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editCategory">வகை:</label>
+                    <select id="editCategory" class="form-select" required>
+                        <option value="தனித்துவமான">தனித்துவமான</option>
+                        <option value="நவீன">நவீன</option>
+                        <option value="தூய தமிழ்">தூய தமிழ்</option>
+                        <option value="இயற்கை">இயற்கை</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editContributor">பங்களிப்பாளர்:</label>
+                    <input type="text" id="editContributor" class="form-input">
+                </div>
+                <div class="modal-actions">
+                    <button type="submit" class="btn btn-primary">
+                        மாற்றங்களை சேமி
+                    </button>
+                    <button type="button" onclick="closeEditModal()" class="btn btn-secondary">
+                        ரத்து செய்
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>தமிழ் பெயர்கள்</h3>
+                    <p>தமிழ் பெயர்களின் பொக்கிஷம்</p>
+                </div>
+                <div class="footer-section">
+                    <h4>இணைப்புகள்</h4>
+                    <ul>
+                        <li><a href="names.html">பெயர்கள்</a></li>
+                        <li><a href="submit.html">பெயர் சேர்க்கவும்</a></li>
+                        <li><a href="about.html">பற்றி</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>தொடர்பு</h4>
+                    <p>உங்கள் கருத்துகள் மற்றும் பரிந்துரைகள் வரவேற்கப்படுகின்றன</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 தமிழ் பெயர்கள். அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="api-client.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Admin-specific variables
+        let selectedNames = [];
+        let currentEditingId = null;
+
+        // Initialize admin panel
+        document.addEventListener('DOMContentLoaded', function() {
+            updateAdminStats();
+            loadAdminNames();
+            setupAdminFilters();
+            setupEditModal();
+        });
+
+        function updateAdminStats() {
+            const pendingNames = namesDatabase.filter(name => name.status === 'pending');
+            const approvedNames = namesDatabase.filter(name => name.status === 'admin');
+            const totalVotes = namesDatabase.reduce((sum, name) => sum + name.votes, 0);
+
+            document.getElementById('pendingCount').textContent = pendingNames.length;
+            document.getElementById('approvedCount').textContent = approvedNames.length;
+            document.getElementById('contributorsCount').textContent = contributors.length;
+            document.getElementById('totalVotes').textContent = totalVotes;
+        }
+
+        function loadAdminNames() {
+            const container = document.getElementById('adminContainer');
+            const statusFilter = document.getElementById('statusFilter').value;
+            const sortBy = document.getElementById('sortBy').value;
+
+            let filteredNames = namesDatabase;
+
+            // Apply status filter
+            if (statusFilter) {
+                filteredNames = filteredNames.filter(name => name.status === statusFilter);
+            }
+
+            // Apply sorting
+            switch (sortBy) {
+                case 'newest':
+                    filteredNames.sort((a, b) => b.id - a.id);
+                    break;
+                case 'oldest':
+                    filteredNames.sort((a, b) => a.id - b.id);
+                    break;
+                case 'most_votes':
+                    filteredNames.sort((a, b) => b.votes - a.votes);
+                    break;
+                case 'least_votes':
+                    filteredNames.sort((a, b) => a.votes - b.votes);
+                    break;
+            }
+
+            if (filteredNames.length === 0) {
+                container.innerHTML = `
+                    <div class="no-results">
+                        <h3>கோரிக்கைகள் இல்லை</h3>
+                        <p>தற்போது ${getStatusText(statusFilter)} பெயர்கள் இல்லை.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = `
+                <div class="admin-names-grid">
+                    ${filteredNames.map(name => createAdminNameCard(name)).join('')}
+                </div>
+            `;
+        }
+
+        function getStatusText(status) {
+            switch (status) {
+                case 'pending': return 'ஒப்புதலுக்காக காத்திருக்கும்';
+                case 'approved': return 'சமூகத்தால் ஒப்புதல் பெற்ற';
+                case 'admin': return 'நிர்வாகத்தால் ஒப்புதல் பெற்ற';
+                default: return '';
+            }
+        }
+
+        function createAdminNameCard(name) {
+            const isSelected = selectedNames.includes(name.id);
+            
+            return `
+                <div class="admin-name-card ${isSelected ? 'selected' : ''}" data-id="${name.id}">
+                    <div class="card-header">
+                        <input type="checkbox" class="name-checkbox" 
+                               ${isSelected ? 'checked' : ''}
+                               onchange="toggleSelection(${name.id})">
+                        <div class="name-status">
+                            ${getStatusBadge(name.status)}
+                        </div>
+                    </div>
+                    
+                    <div class="name-info">
+                        <h3 class="name-title">${name.name}</h3>
+                        <p class="name-meaning"><strong>அர்த்தம்:</strong> ${name.meaning}</p>
+                        ${name.reference ? `<p class="name-reference"><strong>குறிப்பு:</strong> ${name.reference}</p>` : ''}
+                        <div class="name-meta">
+                            <span><strong>பாலினம்:</strong> ${name.gender}</span>
+                            <span><strong>வகை:</strong> ${name.category}</span>
+                            <span><strong>வாக்குகள்:</strong> ${name.votes}</span>
+                        </div>
+                        ${name.contributor ? `<p class="contributor"><strong>பங்களிப்பாளர்:</strong> ${name.contributor}</p>` : ''}
+                    </div>
+                    
+                    <div class="admin-actions">
+                        ${name.status === 'pending' ? `
+                            <button onclick="approveNameAsAdmin(${name.id})" class="btn btn-primary btn-sm">
+                                <i class="fas fa-check"></i> ஒப்புதல்
+                            </button>
+                        ` : ''}
+                        <button onclick="editName(${name.id})" class="btn btn-secondary btn-sm">
+                            <i class="fas fa-edit"></i> திருத்து
+                        </button>
+                        <button onclick="rejectName(${name.id})" class="btn btn-outline btn-sm">
+                            <i class="fas fa-trash"></i> நீக்கு
+                        </button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function getStatusBadge(status) {
+            switch (status) {
+                case 'pending':
+                    return '<span class="badge badge-pending">⏳ பரிசீலனையில்</span>';
+                case 'approved':
+                    return '<span class="badge badge-approved">✅ சமுதாய ஒப்புதல்</span>';
+                case 'admin':
+                    return '<span class="badge badge-admin">🛡️ நிர்வாக ஒப்புதல்</span>';
+                default:
+                    return '';
+            }
+        }
+
+        function toggleSelection(nameId) {
+            const index = selectedNames.indexOf(nameId);
+            
+            if (index > -1) {
+                selectedNames.splice(index, 1);
+            } else {
+                selectedNames.push(nameId);
+            }
+            
+            updateBulkActions();
+            updateCardSelection();
+        }
+
+        function updateCardSelection() {
+            const cards = document.querySelectorAll('.admin-name-card');
+            cards.forEach(card => {
+                const nameId = parseInt(card.dataset.id);
+                const checkbox = card.querySelector('.name-checkbox');
+                
+                if (selectedNames.includes(nameId)) {
+                    card.classList.add('selected');
+                    checkbox.checked = true;
+                } else {
+                    card.classList.remove('selected');
+                    checkbox.checked = false;
+                }
+            });
+        }
+
+        function updateBulkActions() {
+            const bulkActions = document.getElementById('bulkActions');
+            const selectedCount = document.getElementById('selectedCount');
+            
+            if (selectedNames.length > 0) {
+                bulkActions.style.display = 'block';
+                selectedCount.textContent = selectedNames.length;
+            } else {
+                bulkActions.style.display = 'none';
+            }
+        }
+
+        function bulkApprove() {
+            if (confirm(`தேர்ந்தெடுக்கப்பட்ட ${selectedNames.length} பெயர்களை ஒப்புதல் அளிக்க விரும்புகிறீர்களா?`)) {
+                selectedNames.forEach(nameId => {
+                    const name = namesDatabase.find(n => n.id === nameId);
+                    if (name) {
+                        name.status = 'admin';
+                        name.approved = true;
+                    }
+                });
+                
+                clearSelection();
+                loadAdminNames();
+                updateAdminStats();
+                showMessage(`${selectedNames.length} பெயர்கள் ஒப்புதல் அளிக்கப்பட்டன`, 'success');
+            }
+        }
+
+        function bulkReject() {
+            if (confirm(`தேர்ந்தெடுக்கப்பட்ட ${selectedNames.length} பெயர்களை நிராகரிக்க விரும்புகிறீர்களா?`)) {
+                selectedNames.forEach(nameId => {
+                    const index = namesDatabase.findIndex(n => n.id === nameId);
+                    if (index > -1) {
+                        namesDatabase.splice(index, 1);
+                    }
+                });
+                
+                clearSelection();
+                loadAdminNames();
+                updateAdminStats();
+                showMessage(`${selectedNames.length} பெயர்கள் நிராகரிக்கப்பட்டன`, 'success');
+            }
+        }
+
+        function clearSelection() {
+            selectedNames = [];
+            updateBulkActions();
+            updateCardSelection();
+        }
+
+        function setupAdminFilters() {
+            const statusFilter = document.getElementById('statusFilter');
+            const sortBy = document.getElementById('sortBy');
+            
+            statusFilter.addEventListener('change', loadAdminNames);
+            sortBy.addEventListener('change', loadAdminNames);
+        }
+
+        function editName(nameId) {
+            const name = namesDatabase.find(n => n.id === nameId);
+            if (!name) return;
+            
+            currentEditingId = nameId;
+            
+            // Populate edit form
+            document.getElementById('editName').value = name.name;
+            document.getElementById('editMeaning').value = name.meaning;
+            document.getElementById('editReference').value = name.reference || '';
+            document.getElementById('editGender').value = name.gender;
+            document.getElementById('editCategory').value = name.category;
+            document.getElementById('editContributor').value = name.contributor || '';
+            
+            // Show modal
+            document.getElementById('editModal').style.display = 'block';
+        }
+
+        function setupEditModal() {
+            const form = document.getElementById('editForm');
+            const modal = document.getElementById('editModal');
+            const closeBtn = modal.querySelector('.close');
+            
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                saveNameChanges();
+            });
+            
+            closeBtn.addEventListener('click', closeEditModal);
+            
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeEditModal();
+                }
+            });
+        }
+
+        function saveNameChanges() {
+            if (!currentEditingId) return;
+            
+            const name = namesDatabase.find(n => n.id === currentEditingId);
+            if (!name) return;
+            
+            // Update name with form data
+            name.name = document.getElementById('editName').value;
+            name.meaning = document.getElementById('editMeaning').value;
+            name.reference = document.getElementById('editReference').value;
+            name.gender = document.getElementById('editGender').value;
+            name.category = document.getElementById('editCategory').value;
+            name.contributor = document.getElementById('editContributor').value;
+            
+            closeEditModal();
+            loadAdminNames();
+            showMessage('பெயர் வெற்றிகரமாக திருத்தப்பட்டது', 'success');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').style.display = 'none';
+            currentEditingId = null;
+        }
+
+        function exportPendingNames() {
+            const pendingNames = namesDatabase.filter(name => name.status === 'pending');
+            
+            if (pendingNames.length === 0) {
+                alert('ஏற்றுமதி செய்ய பெயர்கள் இல்லை');
+                return;
+            }
+            
+            const csvContent = generateCSV(pendingNames);
+            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'pending-names.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        function generateCSV(names) {
+            const headers = ['பெயர்', 'அர்த்தம்', 'குறிப்பு', 'பாலினம்', 'வகை', 'வாக்குகள்', 'பங்களிப்பாளர்'];
+            const rows = names.map(name => [
+                name.name,
+                name.meaning,
+                name.reference || '',
+                name.gender,
+                name.category,
+                name.votes,
+                name.contributor || ''
+            ]);
+            
+            return [headers, ...rows].map(row => 
+                row.map(field => `"${field}"`).join(',')
+            ).join('\n');
+        }
+
+        function showMessage(text, type) {
+            const existingMessage = document.querySelector('.admin-message');
+            if (existingMessage) {
+                existingMessage.remove();
+            }
+            
+            const message = document.createElement('div');
+            message.className = `admin-message message message-${type}`;
+            message.textContent = text;
+            
+            const container = document.getElementById('adminContainer');
+            container.insertBefore(message, container.firstChild);
+            
+            setTimeout(() => {
+                message.remove();
+            }, 5000);
+        }
+    </script>
+
+    <style>
+        .admin-section {
+            margin-top: 70px;
+            padding: 4rem 0;
+            background: #f8f9fa;
+            min-height: 100vh;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .admin-title {
+            font-size: 2.5rem;
+            color: #d32f2f;
+            margin-bottom: 1rem;
+        }
+
+        .admin-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .admin-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .stat-icon {
+            font-size: 2.5rem;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #d32f2f;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .admin-filters {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .admin-names-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .admin-name-card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .admin-name-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .admin-name-card.selected {
+            border-color: #d32f2f;
+            background: #fff5f5;
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .name-checkbox {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .name-info {
+            margin-bottom: 2rem;
+        }
+
+        .name-title {
+            color: #d32f2f;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .name-meaning,
+        .name-reference {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .name-meta {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .contributor {
+            font-size: 0.9rem;
+            color: #888;
+            font-style: italic;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn-sm {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .bulk-actions {
+            background: #e3f2fd;
+            border: 2px solid #2196f3;
+            border-radius: 15px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .bulk-header h3 {
+            color: #1976d2;
+            margin-bottom: 1.5rem;
+        }
+
+        .bulk-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 4rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .no-results h3 {
+            color: #d32f2f;
+            margin-bottom: 1rem;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 1rem;
+            justify-content: flex-end;
+            margin-top: 2rem;
+        }
+
+        .admin-message {
+            margin-bottom: 2rem;
+        }
+
+        @media (max-width: 768px) {
+            .admin-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .name-meta {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .admin-actions {
+                flex-direction: column;
+            }
+
+            .bulk-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</body>
+</html>
